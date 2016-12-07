@@ -8,21 +8,27 @@
   <% end %>
 
   <fieldset>
-    <legend>Enquiry </legend>
-
+    <legend>Maatregel aanmaken</legend>
+    <%= f.fields_for :measures do |measure| %>
+        <%#measure.fields_for :measure do |measure| %>
     <div>
-      <%= f.label :uitvoerenden  %>
-      <%= f.number_field :Amount, rows: 10 %>
+      <%= f.label :measurement %>
+      <%= measure.text_field :measurement %>
     </div>
 
     <div>
-      <%= f.label :date%>
-      <%= f.date_select :Date %>
+      <%= f.label :type %>
+      <%= measure.text_field :type %>
     </div>
 
     <div>
-      <%= f.label :Time%>
-      <%= f.time_select :Time %>
+      <%= f.label :valid_from %>
+      <%= measure.date_select :valid_from %>
+    </div>
+
+        <div>
+          <%= f.label :valid_to %>
+          <%= measure.date_select :valid_to %>
     </div>
 
     <div>
@@ -35,7 +41,5 @@
 
     </div>
 
-
-  </fieldset>
+        </fieldset>
 <% end %>
-

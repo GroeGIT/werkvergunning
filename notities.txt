@@ -1,0 +1,9 @@
+Localhost:3000 gaat naar de index pagina.
+Gebruikers dienen via localhost:3000/login te gaan om in te kunnen loggen!
+
+To DO:
+Foreign keys in schema!
+ rails g migration AddEnquiryToAgree enquiry:belongs_to
+Voegt een referentie naar enquiry toe aan de 2e tabel, in dit geval agree.
+
+belongs_to :enquiry, :class_name => 'Enquiry'  moet bij de refererende tabel in het model.

@@ -1,0 +1,12 @@
+<h1> registreren </h1>
+
+<%= form_for :user, url: '/users' do |f| %>
+
+    Name: <%= f.text_field :name %><br>
+    Email: <%= f.text_field :email %><br>
+    Password: <%= f.password_field :password %><br>
+    Password confirmation: <%= f.password_field :password_confirmation %><br>
+
+    <%= f.submit "verzenden" %>
+
+<% end %>
