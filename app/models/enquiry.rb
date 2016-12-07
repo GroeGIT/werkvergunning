@@ -17,6 +17,9 @@ class Enquiry < ActiveRecord::Base
   has_many :signatures, :class_name => 'Signature' #, inverse_of: :Enquiry
   accepts_nested_attributes_for :signatures, :allow_destroy => false
 
+  has_many :tools, :class_name => 'Tool' #, inverse_of: :Enquiry
+
+
 # 28-11 MG de pagina's die in het form worden gebruikt.
   cattr_accessor :form_steps do
     %w(basic when measurements)
