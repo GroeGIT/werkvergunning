@@ -13,8 +13,9 @@ class Enquirys::StepsController < ApplicationController
     @enquiry = Enquiry.find(params[:enquiry_id])
     @enquiry.update(enquiry_params(step))
 
+    #werkt niet, could not find EnquiryMeasure with 'id'=
     #@enquiry_measure = EnquiryMeasure.find(params[:enquiry_measure_id])
-    #@enquiry_measure.update(enquiry_measure_params(step))
+   #@enquiry_measure.update(enquiry_measure_params(step))
 
     render_wizard @enquiry
   end

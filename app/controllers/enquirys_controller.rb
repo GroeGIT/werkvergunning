@@ -23,6 +23,7 @@ class EnquirysController < ApplicationController
   def create
     @enquiry = Enquiry.new
     #@enquiry_measure = EnquiryMeasure.new
+    @enquiry.enquiry_measures.build#(:enquiry_id => :id)
     @enquiry.save(validate: false)
     #@enquiry_measure.save(validate: false)
     redirect_to enquiry_step_path(@enquiry, Enquiry.form_steps.first)

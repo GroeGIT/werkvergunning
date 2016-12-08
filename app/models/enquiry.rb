@@ -19,8 +19,14 @@ class Enquiry < ActiveRecord::Base
 
   has_many :tools, :class_name => 'Tool' #, inverse_of: :Enquiry
 
+  #de instances van andere tabellen:
 
-# 28-11 MG de pagina's die in het form worden gebruikt.
+  e = Enquiry.new
+  e.enquiry_measures.build(:enquiry_id => :id)
+  e.measures.build
+
+
+  # 28-11 MG de pagina's die in het form worden gebruikt.
   cattr_accessor :form_steps do
     %w(basic when measurements)
   end

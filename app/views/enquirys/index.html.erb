@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>referentie</th>
       <th>Beschrijving</th>
       <th>Locatie</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @enquirys.each do |enquiry| %>
       <tr>
+        <td><%= enquiry.id %></td>
         <td><%= enquiry.Reference %></td>
         <td><%= enquiry.Description %></td>
         <td><%= enquiry.Location %></td>
