@@ -1,5 +1,6 @@
 class EnquirysController < ApplicationController
   before_action :set_enquiry, only: [:show, :edit, :update, :destroy]
+  before_action :set_measurement, only: [:show, :edit, :update]
 
 
   def index
@@ -8,7 +9,7 @@ class EnquirysController < ApplicationController
     @enquirys = Enquiry.where.not(reference: nil)
 
     #voor het toevoegen van maatregelen. test!
-    @measures = Measure.where.not(measurement: nil)
+    @measurements = Measure.where.not(measurement: nil)
       #@enquirymeasure = EnquiryMeasure.where.not(enquiry_measure_id: nil)
 
   end
@@ -17,7 +18,7 @@ class EnquirysController < ApplicationController
     @enquiry = Enquiry.new
     #voor het toevoegen van maatregelen. test!
     @enquiry_measure = EnquiryMeasure.new
-    @measure = Measure.new
+    @measurement = Measure.new
   end
 
   def create
@@ -27,10 +28,13 @@ class EnquirysController < ApplicationController
     @enquiry.save(validate: false)
     #@enquiry_measure.save(validate: false)
     redirect_to enquiry_step_path(@enquiry, Enquiry.form_steps.first)
+    @measurement = Measure.new
+    @measurement.save(validate: false)
   end
 
   def show
     @enquiry = Enquiry.find(params[:enquiry_id])
+    @measurement = Measure.find(params[:id])
   end
 
   def destroy
@@ -48,14 +52,15 @@ class EnquirysController < ApplicationController
     @enquiry = Enquiry.find(params[:id])
   end
 
+  def set_measurement
+    @measurement = Measure.find(params[:Measure.id])
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   #Nodig voor het opslaan en tonen van items! alle weer te geven dingen dienen in de params te staan.
   def enquiry_params
-    params.require(:enquiry).permit(:Reference, :Location, :Date, :Time, :Amount)
+  params.require(:enquiry).permit(:Reference, :Location, :Date, :Time, :Amount, measure_attributes: [:measurement, :type, :valid_from, :valid_to] )
+  #nquiry_measures_attributes: [ :done, :responsible, :needed]
   end
-
-#  def enquirymeasure_params_params
-#   params.require(:enquirymeasure).permit(:done, :responsible, :needed)
-#  end
 
 end

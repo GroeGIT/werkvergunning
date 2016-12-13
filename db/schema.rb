@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207144009) do
+ActiveRecord::Schema.define(version: 20161212153307) do
 
   create_table "agrees", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20161207144009) do
 
   create_table "measures", force: :cascade do |t|
     t.string  "measurement",        limit: 255
-    t.string  "type",               limit: 255
+    t.string  "measurement_type",   limit: 255
     t.date    "valid_from"
     t.date    "valid_to"
     t.integer "enquiry_measure_id", limit: 4

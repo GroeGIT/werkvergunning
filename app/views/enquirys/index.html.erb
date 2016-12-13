@@ -45,18 +45,20 @@
 <td><%= simple_format enquiry.Amount %></td>
 <% end %>
 
-<% if false %>
+<br>
+<hr>
+<br>
     Hier word de inhoud van de maatregelen tabel getoond
     <hr>
     <H2>Maatregelen</H2>
-    <hr>
+
     <table>
       <thead>
       <tr>
+        <th>id</th>
         <th>Maatregel</th>
         <th>Type</th>
         <th>Geldig vanaf
-        <th>
         <th>Geldig tot</th>
         <th></th>
         <th></th>
@@ -64,16 +66,19 @@
       </thead>
 
       <tbody>
-      <% @measures.each do |measure| %>
+      <% @measurements.each do |measure| %>
           <tr>
+            <td><%= measure.id %></td>
             <td><%= measure.measurement %></td>
-            <td><%= measure.type %></td>
+            <td><%= measure.measurement_type %></td>
             <td><%= measure.valid_from %></td>
             <td><%= measure.valid_to %></td>
-            <
-            <td><%= link_to 'Destroy', measure, method: :delete, data: {confirm: 'Weet u zeker dat u deze record wilt verwijderen?'} %></td>
+            <td><%# link_to 'Destroy', measure, method: :delete, data: {confirm: 'Weet u zeker dat u deze record wilt verwijderen?'} %></td>
           </tr>
       <% end %>
       </tbody>
     </table>
-<% end %>
+
+<br>
+<%# link_to 'Nieuwe maatregel', measure_path, method: :create %>
+<br>

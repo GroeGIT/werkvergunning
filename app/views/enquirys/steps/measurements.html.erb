@@ -15,11 +15,6 @@
         <%= f.text_field :Reference, disabled: true %>
       </div>
 
-      <div>
-        <%= f.submit 'Next Step' %>
-        <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
-
-      </div>
     </fieldset>
 
     <%# Code voor de Measurements. %>
@@ -32,15 +27,15 @@
             <div>
               <%= f.label :Maatregel %>
               <br/>
-              <%# collection_select(:measure, :enquiry_id, Enquiry.all, :id, :measurement) %>
+              <%= collection_select(:measure, :enquiry_id, Enquiry.all, :id, :measurement) %>
               <%# http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select -%>
-              <%= collection_select :measurement, :enquiry_measures, measures.select(:measurement).uniq.order('measurement ASC'), :measurement, :measurement, {:prompt => 'kies een maatregel'}, {:name => 'select_measurement'} %>
+             <%# uitgebreider, bovenstaande zou goed moeten zijn(8-12 MG) collection_select :measurement, :enquiry_measures, measurement.select(:measurement).uniq.order('measurement ASC'), :measurement, :measurement, {:prompt => 'kies een maatregel'}, {:name => 'select_measurement'} %>
             </div>
         <% end %>
 
         <div>
-          <%# test met enquiry_meeasures ipv f.label 7-12 MG%>
-          <%= enquiry_measures.label :Gereed %>
+          <%# test met enquiry_measures ipv f.label 7-12 MG%>
+          <%= f.label :Gereed %>
           <br/>
           <%= enquiry_measures.text_field :done %>
         </div>
@@ -69,4 +64,6 @@
     <% end %> <%# end of f.fields_for :enquiry_measures %>
     </fieldset>
 <% end %>
+
+
 

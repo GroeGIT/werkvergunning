@@ -4,9 +4,10 @@ class Enquiry < ActiveRecord::Base
   # de dere regel zorgt ervoor dat de maatregelen worden opgehaald via de tussentabel enquiry_measures.
 
   has_many :enquiry_measures, :class_name => 'EnquiryMeasure' #, inverse_of: :Enquiry
-  accepts_nested_attributes_for :enquiry_measures, :allow_destroy => false
+  accepts_nested_attributes_for :enquiry_measures, :allow_destroy => true
 
   has_many :measures, -> { uniq }, :class_name => 'Measure', :through => :enquiry_measures, dependent: :destroy
+  accepts_nested_attributes_for :measures, :allow_destroy => false
 
   has_many :controls, :class_name => 'Control' #, inverse_of: :Enquiry
 
@@ -33,7 +34,7 @@ class Enquiry < ActiveRecord::Base
 
   attr_accessor :form_step
 
-  validates :Reference, :Location, presence: true, if: -> { required_for_step?(:basic) }
+  validates :Reference, presence: true, if: -> { required_for_step?(:basic) }
   validates :Amount, :Date, presence: true, if: -> { required_for_step?(:when) }
   validates :needed, presence: true, if: -> { required_for_step?(:measurements) }
 #validates :needed, :measurement, presence: true, if: -> { required_for_step?(:createmeasures) }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ resources :measures
   resources :enquirys, only: [:new, :create, :index, :destroy, :edit] do
     resources :steps, only: [:show, :update], controller: 'enquirys/steps'
   end
@@ -14,5 +15,10 @@ Rails.application.routes.draw do
   #routes for signup ., eerste zorgt voor het formulier, 2e haalt data eruit en maakt de user aan
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  #voor nieuwe measurements
+
+ # get '/admin/new' => 'admin#new'
+  #post '/admin/new' => 'admin#create'
 
 end
