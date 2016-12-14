@@ -12,13 +12,14 @@
 <% end %>
 
 <div class="field">
-  <%= f.label :measurement %><br>
+  <%= f.label :Maatregel     %><br>
   <%= f.text_field :measurement %>
 </div>
 <div class="field">
   <%= f.label :type %><br>
-  <%# f.select :measurement_type, [['Product verklaring','product vrij verklaring'],['Elektrotechnische maatregel','Elektrotechnische maatregelen'],['Maatregel door vergunninghouder','maatregel door vergunninghouder'], ['brandpreventie', 'brandpreventie'], ['persoonnlijke bescherming', 'persoonlijke bescherming']] %>
-  <%= f.text_field :measurement_type %>
+  <%= f.select :measurement_type, [['Product verklaring','product vrij verklaring'],['Elektrotechnische maatregel','Elektrotechnische maatregelen'],['Maatregel door vergunninghouder','maatregel door vergunninghouder'], ['Brandpreventie', 'brandpreventie'], ['Persoonlijke bescherming', 'persoonlijke bescherming']] %>
+
+  <% f.text_field :measurement_type %>
 </div>
 <div class="field">
   <%= f.label :valid_from %><br>

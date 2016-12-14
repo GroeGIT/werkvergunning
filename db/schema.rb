@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212153307) do
+ActiveRecord::Schema.define(version: 20161214081521) do
 
   create_table "agrees", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(version: 20161212153307) do
   add_index "controls", ["enquiry_id"], name: "index_controls_on_enquiry_id", using: :btree
 
   create_table "enquiries", force: :cascade do |t|
-    t.string   "Reference",    limit: 255
-    t.string   "Location",     limit: 255
-    t.text     "Description",  limit: 65535
-    t.integer  "Amount",       limit: 4
-    t.date     "Date"
-    t.time     "Time"
+    t.string   "reference",    limit: 255
+    t.string   "location",     limit: 255
+    t.text     "description",  limit: 65535
+    t.integer  "amount",       limit: 4
+    t.date     "date"
+    t.time     "time"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "applicant_id", limit: 4

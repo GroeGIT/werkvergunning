@@ -45,7 +45,6 @@ class EnquirysController < ApplicationController
     end
   end
 
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_enquiry
@@ -59,7 +58,7 @@ class EnquirysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   #Nodig voor het opslaan en tonen van items! alle weer te geven dingen dienen in de params te staan.
   def enquiry_params
-  params.require(:enquiry).permit(:Reference, :Location, :Date, :Time, :Amount, measure_attributes: [:measurement, :type, :valid_from, :valid_to] )
+  params.require(:enquiry).permit(:reference, :location, :date, :time, :amount, measure_attributes: [:measurement, :type, :valid_from, :valid_to], enquiry_measure_attributes: [:done, :responsible, :needed] )
   #nquiry_measures_attributes: [ :done, :responsible, :needed]
   end
 

@@ -34,10 +34,10 @@ class Enquiry < ActiveRecord::Base
 
   attr_accessor :form_step
 
-  validates :Reference, presence: true, if: -> { required_for_step?(:basic) }
-  validates :Amount, :Date, presence: true, if: -> { required_for_step?(:when) }
-  validates :needed, presence: true, if: -> { required_for_step?(:measurements) }
-#validates :needed, :measurement, presence: true, if: -> { required_for_step?(:createmeasures) }
+  validates :reference, presence: true, if: -> { required_for_step?(:basic) }
+  validates :amount, :date, presence: true, if: -> { required_for_step?(:when) }
+  #validates :needed, presence: true, if: -> { required_for_step?(:measurements) }
+
 
 
   def required_for_step?(step)

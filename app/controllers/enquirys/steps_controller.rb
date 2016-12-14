@@ -25,9 +25,9 @@ class Enquirys::StepsController < ApplicationController
   def enquiry_params(step)
     permitted_attributes = case step
                              when "basic"
-                               [:Reference, :Description, :Location]
+                               [:reference, :description, :location]
                              when "when"
-                               [:Amount, :Date]
+                               [:amount, :date]
                              when "measurements"
                                [:responsible, :needed, :done]
                            #  when "createmeasures"
@@ -35,7 +35,7 @@ class Enquirys::StepsController < ApplicationController
                            end
 
     params.require(:enquiry).permit(permitted_attributes).merge(form_step: step)
-    params.require(:enquiry_measures).permit(permitted_attributes).merge(form_step: step)
+    #params.require(:enquiry_measures).permit(permitted_attributes).merge(form_step: step)
   end
 
 end

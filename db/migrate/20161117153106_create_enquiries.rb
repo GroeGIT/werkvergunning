@@ -1,12 +1,12 @@
 class CreateEnquiries < ActiveRecord::Migration
   def change
     create_table :enquiries do |t|
-      t.string :Reference
-      t.string :Location
-      t.text :Description
-      t.integer :Amount
-      t.date :Date
-      t.time :Time
+      t.string :reference
+      t.string :location
+      t.text :description
+      t.integer :amount
+      t.date :date
+      t.time :time
 
       t.timestamps null: false
     end

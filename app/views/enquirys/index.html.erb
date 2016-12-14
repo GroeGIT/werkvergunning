@@ -12,8 +12,7 @@
       <th>Datum</th>
       <th>Aantal uitvoerenden</th>
       <th></th>
-      <th></th>
-      <th></th>
+
     </tr>
   </thead>
 
@@ -21,11 +20,11 @@
     <% @enquirys.each do |enquiry| %>
       <tr>
         <td><%= enquiry.id %></td>
-        <td><%= enquiry.Reference %></td>
-        <td><%= enquiry.Description %></td>
-        <td><%= enquiry.Location %></td>
-        <td><%= enquiry.Date %></td>
-        <td><%= enquiry.Amount %></td>
+        <td><%= enquiry.reference %></td>
+        <td><%= enquiry.description %></td>
+        <td><%= enquiry.location %></td>
+        <td><%= enquiry.date %></td>
+        <td><%= enquiry.amount %></td>
 
         <td><%= link_to 'Destroy', enquiry, method: :delete, data: {confirm: 'Weet u zeker dat u deze record wilt verwijderen?'} %></td>
       </tr>
@@ -80,5 +79,5 @@
     </table>
 
 <br>
-<%# link_to 'Nieuwe maatregel', measure_path, method: :create %>
+<%= link_to 'Nieuwe maatregel', measures_path %>
 <br>
