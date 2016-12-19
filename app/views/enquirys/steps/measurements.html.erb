@@ -1,4 +1,4 @@
-<%= form_for @enquiry, method: :put, url: wizard_path do |f| %>
+<%= form_for @enquiry, remote :true, method: :put, url: wizard_path do |f| %>
     <% if f.object.errors.any? %>
         <div class="error_messages">
           <% f.object.errors.full_messages.each do |error| %>
@@ -20,48 +20,48 @@
     <%# Code voor de Measurements. %>
 
     <fieldset>
-    <legend>Maatregelen</legend>
-    <%= f.fields_for :enquiry_measures do |enquiry_measures| %>
-        <%# enquiry_measures.fields_for :measure do |measures| %>
-        <% if false %>
-            <div>
-              <%= f.label :Maatregel %>
-              <br/>
-              <%= collection_select(:measure, :enquiry_id, Enquiry.all, :id, :measurement) %>
-              <%# http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select -%>
-             <%# uitgebreider, bovenstaande zou goed moeten zijn(8-12 MG) collection_select :measurement, :enquiry_measures, measurement.select(:measurement).uniq.order('measurement ASC'), :measurement, :measurement, {:prompt => 'kies een maatregel'}, {:name => 'select_measurement'} %>
-            </div>
-        <% end %>
+      <legend>Maatregelen</legend>
+      <%= f.fields_for :enquiry_measures do |enquiry_measures| %>
+          <%# enquiry_measures.fields_for :measure do |measures| %>
+          <div>s
+            <%= f.label :Maatregel %>
+            <br/>
+            <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement_type) %>
 
-        <div>
-          <%# test met enquiry_measures ipv f.label 7-12 MG%>
-          <%= f.label :Gereed %>
-          <br/>
-          <%= enquiry_measures.check_box :done %>
-        </div>
+            <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement) %>
+          </div>
 
-        <div>
-          <%= f.label :Verantwoordelijke %>
-          <br/>
-          <%= enquiry_measures.text_field :responsible %>
-        </div>
+          <div>
+            <%# test met enquiry_measures ipv f.label 7-12 MG%>
+            <%= f.label :Gereed %>
+            <br/>
+            <%= enquiry_measures.check_box :done %>
+          </div>
 
-        <div>
-          <%= f.label :Benodigd %>
-          <br/>
-          <%= enquiry_measures.check_box :needed %>
-        </div>
+          <div>
+            <%= f.label :Verantwoordelijke %>
+            <br/>
+            <%= enquiry_measures.text_field :responsible %>
+          </div>
 
-        <div>
-          <%= f.submit 'Next Step' %>
+          <div>
+            <%= f.label :Benodigd %>
+            <br/>
+            <%= enquiry_measures.check_box :needed %>
 
-          <%# 24-11 MG knop die je terug stuurt naar de homepage %>
-          <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
+          </div>
 
-        </div>
+          <div>
+            <%= f.submit 'Next Step' %>
 
-        <%# end of enquiry_measures.fields_for :measure, END Tag nog plaatsen! %>
-    <% end %> <%# end of f.fields_for :enquiry_measures %>
+            <%# 24-11 MG knop die je terug stuurt naar de homepage %>
+            <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
+
+          </div>
+
+
+          <%# end of enquiry_measures.fields_for :measure, END Tag nog plaatsen! %>
+      <% end %> <%# end of f.fields_for :enquiry_measures %>
     </fieldset>
 <% end %>
 
