@@ -30,6 +30,8 @@ class Enquirys::StepsController < ApplicationController
                                [:amount, :date]
                              when "measurements"
                                [:responsible, :needed, :done]
+                             when "tools"
+                               [:handtool]
                            #  when "createmeasures"
                             #   [:measurement]
                            end

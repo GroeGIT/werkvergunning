@@ -1,4 +1,5 @@
-<%= form_for @enquiry, remote :true, method: :put, url: wizard_path do |f| %>
+<%= form_for @enquiry, method: :put, url: wizard_path do |f| %>
+    <%= f.fields_for :enquiry_measures do |e| %>
     <% if f.object.errors.any? %>
         <div class="error_messages">
           <% f.object.errors.full_messages.each do |error| %>
@@ -16,44 +17,47 @@
       </div>
 
     </fieldset>
+<br>
+    Onder de volgende items kunt u te nemen maatregelen of eisen per categorie toevoegen.
+    <br>
 
     <%# Code voor de Measurements. %>
 
-    <fieldset>
-      <legend>Maatregelen</legend>
-      <%= f.fields_for :enquiry_measures do |enquiry_measures| %>
+    <fieldset class = "enquiry, collapsible">
+      <legend>Product vrij verklaring</legend>
+      <%# f.fields_for :enquiry_measures do |e| %>
           <%# enquiry_measures.fields_for :measure do |measures| %>
-          <div>s
+          <div>
             <%= f.label :Maatregel %>
             <br/>
             <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement_type) %>
 
-            <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement) %>
+            <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement) %> <%#, {:prompt => false}, {:multiple => true} eruit gehaald ivm no routes matching error%>
           </div>
 
           <div>
             <%# test met enquiry_measures ipv f.label 7-12 MG%>
-            <%= f.label :Gereed %>
+            <%= e.label :Gereed %>
             <br/>
-            <%= enquiry_measures.check_box :done %>
+            <%= e.check_box :done %>
           </div>
 
           <div>
-            <%= f.label :Verantwoordelijke %>
+            <%= e.label :Verantwoordelijke %>
             <br/>
-            <%= enquiry_measures.text_field :responsible %>
+            <%= e.text_field :responsible %>
           </div>
 
           <div>
-            <%= f.label :Benodigd %>
+            <%= e.label :Benodigd %>
             <br/>
-            <%= enquiry_measures.check_box :needed %>
+            <%= e.check_box :needed %>
 
           </div>
 
           <div>
-            <%= f.submit 'Next Step' %>
-
+            <%= e.submit 'Next Step' %>
+          <br>
             <%# 24-11 MG knop die je terug stuurt naar de homepage %>
             <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
 

@@ -29,7 +29,7 @@ class Enquiry < ActiveRecord::Base
 
   # 28-11 MG de pagina's die in het form worden gebruikt.
   cattr_accessor :form_steps do
-    %w(basic when measurements)
+    %w(basic when measurements tool)
   end
 
   attr_accessor :form_step
@@ -44,6 +44,8 @@ class Enquiry < ActiveRecord::Base
     return true if form_step.nil?
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
+
+
 
 
 end

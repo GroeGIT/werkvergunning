@@ -47,5 +47,8 @@ group :development do
   #gem voor gebruik van multipage forms
   gem 'wicked'
 
+#gem voor mysql admin: rails_admin https://github.com/sferik/rails_admin
+
+  gem 'rails_admin', '~> 1.0'
 end
 

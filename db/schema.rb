@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214081521) do
+ActiveRecord::Schema.define(version: 20161220081412) do
 
   create_table "agrees", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(version: 20161214081521) do
   create_table "enquiry_measures", force: :cascade do |t|
     t.integer  "enquiry_id",         limit: 4
     t.integer  "measure_id",         limit: 4
-    t.boolean  "done"
+    t.text     "done",               limit: 65535
     t.string   "responsible",        limit: 255
-    t.boolean  "needed"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.text     "needed",             limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "enquiry_measure_id", limit: 4
   end
 

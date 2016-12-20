@@ -1,0 +1,40 @@
+<%= form_for @enquiry, method: :put, url: wizard_path do |f| %>
+    <% if f.object.errors.any? %>
+        <div class="error_messages">
+          <% f.object.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <fieldset class="enquiry">
+      <legend>Enquiry Basic</legend>
+      <%= f.fields_for :tools do |t| %>
+
+      <div>
+        <%= f.label :Handgereedschap %>
+        <%= t.text_field :handtool %>
+      </div>
+
+          <div>
+        <%= f.label :apparatuur %>
+        <%= t.text_area :equipment %>
+      </div>
+
+          <div>
+            <%= f.label :Overig %>
+            <%= t.text_area :else %>
+          </div>
+
+
+      <div>
+        <%= f.submit 'Next Step' %>
+
+        <%# 24-11 MG knop die je terug stuurt naar de homepage %>
+        <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
+
+      </div>
+    <%end%>
+    </fieldset>
+
+<% end %>

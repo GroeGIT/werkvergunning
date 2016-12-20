@@ -7,3 +7,7 @@ Foreign keys in schema!
 Voegt een referentie naar enquiry toe aan de 2e tabel, in dit geval agree.
 
 belongs_to :enquiry, :class_name => 'Enquiry'  moet bij de refererende tabel in het model.
+
+
+http://localhost:3000/railsadmin
+voor het beheren van de database

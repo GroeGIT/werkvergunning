@@ -1,9 +1,11 @@
 class EnquirysController < ApplicationController
   before_action :set_enquiry, only: [:show, :edit, :update, :destroy]
   before_action :set_measurement, only: [:show, :edit, :update]
-
+  before_action :set_tool, only: [:show, :edit, :update]
 
   def index
+
+
     # Normally you'd have more complex requirements about
     # when not to show rows, but we don't show any records that don't have a name
     @enquirys = Enquiry.where.not(reference: nil)
@@ -12,13 +14,14 @@ class EnquirysController < ApplicationController
     @measurements = Measure.where.not(measurement: nil)
       #@enquirymeasure = EnquiryMeasure.where.not(enquiry_measure_id: nil)
 
-  end
+   end
 
   def new
     @enquiry = Enquiry.new
     #voor het toevoegen van maatregelen. test!
     @enquiry_measure = EnquiryMeasure.new
     @measurement = Measure.new
+    @tool = Tool.new
   end
 
   def create
@@ -26,10 +29,13 @@ class EnquirysController < ApplicationController
     #@enquiry_measure = EnquiryMeasure.new
     @enquiry.enquiry_measures.build#(:enquiry_id => :id)
     @enquiry.save(validate: false)
-    #@enquiry_measure.save(validate: false)
-    redirect_to enquiry_step_path(@enquiry, Enquiry.form_steps.first)
+
+
     @measurement = Measure.new
     @measurement.save(validate: false)
+    #@enquiry_measure.save(validate: false) gooit een undefined method `save' for nil:NilClass error
+
+    redirect_to enquiry_step_path(@enquiry, Enquiry.form_steps.first)
   end
 
   def show
@@ -45,6 +51,7 @@ class EnquirysController < ApplicationController
     end
   end
 
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_enquiry
@@ -58,7 +65,7 @@ class EnquirysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   #Nodig voor het opslaan en tonen van items! alle weer te geven dingen dienen in de params te staan.
   def enquiry_params
-  params.require(:enquiry).permit(:reference, :location, :date, :time, :amount, measure_attributes: [:measurement, :type, :valid_from, :valid_to], enquiry_measure_attributes: [:done, :responsible, :needed] )
+  params.require(:enquiry).permit(:reference, :location, :date, :time, :amount, measure_attributes: [:measurement, :type], enquiry_measure_attributes: [:done, :responsible, :needed, {:measure_id => []}], tool_attributes: [:handtool, :equipment, :else] )
   #nquiry_measures_attributes: [ :done, :responsible, :needed]
   end
 

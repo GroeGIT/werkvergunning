@@ -57,6 +57,37 @@
 
 <%# 24/11 MG tot hier-%>
 
+    <%= f.fields_for :enquiry_measures do |enquiry_measures| %>
+        <%# enquiry_measures.fields_for :measure do |measures| %>
+        <div>
+          <%= f.label :Maatregel %>
+          <br/>
+          <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement_type) %>
+
+          <%= collection_select(:measure_id, 0, Measure.all, :id, :measurement, {:prompt => false}, {:multiple => true}) %>
+        </div>
+
+        <div>
+          <%# test met enquiry_measures ipv f.label 7-12 MG%>
+          <%= f.label :Gereed %>
+          <br/>
+          <%= enquiry_measures.check_box :done %>
+        </div>
+
+        <div>
+          <%= f.label :Verantwoordelijke %>
+          <br/>
+          <%= enquiry_measures.text_field :responsible %>
+        </div>
+
+        <div>
+          <%= f.label :Benodigd %>
+          <br/>
+          <%= enquiry_measures.check_box :needed %>
+
+        </div>
+
+    <%end%>
   <div class="actions">
     <%= f.submit %>
   </div>
