@@ -13,9 +13,12 @@ class Enquirys::StepsController < ApplicationController
     @enquiry = Enquiry.find(params[:enquiry_id])
     @enquiry.update(enquiry_params(step))
 
+
+
     #werkt niet, could not find EnquiryMeasure with 'id'=
     #@enquiry_measure = EnquiryMeasure.find(params[:enquiry_measure_id])
-   #@enquiry_measure.update(enquiry_measure_params(step))
+    #@enquiry_measure.update(enquiry_measure_params(step))
+    #@enquiry.enquiry_measures.build#(:enquiry_id => :id) zorgt ervoor dat hetzelfde form 4x word getoond, geen enkele word correct opgeslagen.
 
     render_wizard @enquiry
   end

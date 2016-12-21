@@ -11,3 +11,7 @@ belongs_to :enquiry, :class_name => 'Enquiry'  moet bij de refererende tabel in 
 
 http://localhost:3000/railsadmin
 voor het beheren van de database
+
+Om een maatregel aan te maken/toe te voegen:
+http://0.0.0.0:3000/measures
+of klik op de link op de landing page!

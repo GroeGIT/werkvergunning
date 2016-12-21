@@ -1,5 +1,5 @@
 <%= form_for @enquiry, method: :put, url: wizard_path do |f| %>
-    <%= f.fields_for :enquiry_measures do |e| %>
+
     <% if f.object.errors.any? %>
         <div class="error_messages">
           <% f.object.errors.full_messages.each do |error| %>
@@ -25,6 +25,7 @@
 
     <fieldset class = "enquiry, collapsible">
       <legend>Product vrij verklaring</legend>
+      <%= f.fields_for :enquiry_measures do |e| %>
       <%# f.fields_for :enquiry_measures do |e| %>
           <%# enquiry_measures.fields_for :measure do |measures| %>
           <div>

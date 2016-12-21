@@ -22,18 +22,18 @@ class EnquirysController < ApplicationController
     @enquiry_measure = EnquiryMeasure.new
     @measurement = Measure.new
     @tool = Tool.new
+    #@enquiry.enquiry_measures.build
   end
 
   def create
     @enquiry = Enquiry.new
     #@enquiry_measure = EnquiryMeasure.new
     @enquiry.enquiry_measures.build#(:enquiry_id => :id)
+    @enquiry.tools.build
     @enquiry.save(validate: false)
-
-
-    @measurement = Measure.new
-    @measurement.save(validate: false)
-    #@enquiry_measure.save(validate: false) gooit een undefined method `save' for nil:NilClass error
+    #@measurement = Measure.new
+    #@measurement.save(validate: false)
+    #@enquiry_measure.save(:enquiry_id => :id) # gooit een undefined method `save' for nil:NilClass error
 
     redirect_to enquiry_step_path(@enquiry, Enquiry.form_steps.first)
   end
