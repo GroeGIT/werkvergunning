@@ -22,7 +22,8 @@
         <td><%= enquiry.description %></td>
         <td><%= enquiry.location %></td>
         <td><%= enquiry.date %></td>
-        <td><%= enquiry.amount %></td>
+                 <td><%= enquiry.amount %></td>
+
 
         <td><%= link_to 'Destroy', enquiry, method: :delete, data: {confirm: 'Weet u zeker dat u deze record wilt verwijderen?'} %></td>
       </tr>
@@ -33,15 +34,6 @@
 <br>
 
 <%= link_to 'Nieuwe werkvergunning', enquirys_path, method: :create %>
-<br>
-
-
-
-<% if false %>
-<td><%= simple_format enquiry.Date %></td>  
-<td><%= simple_format enquiry.Amount %></td>
-<% end %>
-
 <br>
 <hr>
 <br>
@@ -77,5 +69,5 @@
     </table>
 
 <br>
-<%= link_to 'Nieuwe maatregel', measures_path %>
+<%= link_to 'Maatregelen bewerken', measures_path %>
 <br>

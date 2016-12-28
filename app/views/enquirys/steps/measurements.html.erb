@@ -1,5 +1,5 @@
 <%= form_for @enquiry, method: :put, url: wizard_path do |f| %>
-
+    <%# form_for @enquiry, method: :put, url: wizard_path do |f| %>
     <% if f.object.errors.any? %>
         <div class="error_messages">
           <% f.object.errors.full_messages.each do |error| %>
@@ -7,7 +7,7 @@
           <% end %>
         </div>
     <% end %>
-
+  <% if false %>
     <fieldset>
       <legend>Informatie</legend>
 
@@ -17,13 +17,14 @@
       </div>
 
     </fieldset>
+    <%end%>
 <br>
     Onder de volgende items kunt u te nemen maatregelen of eisen per categorie toevoegen.
     <br>
 
     <%# Code voor de Measurements. %>
 
-    <fieldset class = "enquiry, collapsible">
+     <fieldset class = "enquiry, collapsible">
       <legend>Product vrij verklaring</legend>
       <%= f.fields_for :enquiry_measures do |e| %>
       <%# f.fields_for :enquiry_measures do |e| %>
@@ -53,7 +54,6 @@
             <%= e.label :Benodigd %>
             <br/>
             <%= e.check_box :needed %>
-
           </div>
 
           <div>
@@ -61,11 +61,8 @@
           <br>
             <%# 24-11 MG knop die je terug stuurt naar de homepage %>
             <%= button_tag "Annuleren", :type => 'button', :class => "subBtn", :onclick => "location.href = '#{root_path()}'" %>
-
           </div>
 
-
-          <%# end of enquiry_measures.fields_for :measure, END Tag nog plaatsen! %>
       <% end %> <%# end of f.fields_for :enquiry_measures %>
     </fieldset>
 <% end %>

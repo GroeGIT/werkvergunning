@@ -5,20 +5,19 @@ class EnquirysController < ApplicationController
 
   def index
 
-
     # Normally you'd have more complex requirements about
     # when not to show rows, but we don't show any records that don't have a name
     @enquirys = Enquiry.where.not(reference: nil)
 
     #voor het toevoegen van maatregelen. test!
     @measurements = Measure.where.not(measurement: nil)
-      #@enquirymeasure = EnquiryMeasure.where.not(enquiry_measure_id: nil)
+    #@enquirymeasure = EnquiryMeasure.where.not(enquiry_measure_id: nil)
 
    end
 
   def new
     @enquiry = Enquiry.new
-    #voor het toevoegen van maatregelen. test!
+   #voor het toevoegen van maatregelen. test!
     @enquiry_measure = EnquiryMeasure.new
     @measurement = Measure.new
     @tool = Tool.new
@@ -27,8 +26,7 @@ class EnquirysController < ApplicationController
 
   def create
     @enquiry = Enquiry.new
-    #@enquiry_measure = EnquiryMeasure.new
-    @enquiry.enquiry_measures.build#(:enquiry_id => :id)
+    @enquiry.enquiry_measures.build
     @enquiry.tools.build
     @enquiry.save(validate: false)
     #@measurement = Measure.new
@@ -65,8 +63,9 @@ class EnquirysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   #Nodig voor het opslaan en tonen van items! alle weer te geven dingen dienen in de params te staan.
   def enquiry_params
-  params.require(:enquiry).permit(:reference, :location, :date, :time, :amount, measure_attributes: [:measurement, :type], enquiry_measure_attributes: [:done, :responsible, :needed, {:measure_id => []}], tool_attributes: [:handtool, :equipment, :else] )
-  #nquiry_measures_attributes: [ :done, :responsible, :needed]
+  params.require(:enquiry).permit(:reference, :location, :date, :amount, measure_attributes: [:measurement, :type], enquiry_measure_attributes: [:done, :responsible, :needed], tool_attributes: [:handtool, :equipment, :else] )
+  #, {:measure_id => []} hoort achter enquiry_measures_attributes
+  # nquiry_measures_attributes: [ :done, :responsible, :needed]
   end
 
 end

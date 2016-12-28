@@ -41,8 +41,6 @@ class Enquiry < ActiveRecord::Base
   validates :amount, :date, presence: true, if: -> { required_for_step?(:when) }
   #validates :needed, presence: true, if: -> { required_for_step?(:measurements) }
 
-
-
   def required_for_step?(step)
     return true if form_step.nil?
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
