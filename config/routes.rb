@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :enquiries
   mount RailsAdmin::Engine => '/railsadmin', as: 'rails_admin'
  resources :measures
   resources :enquirys, only: [:new, :create, :index, :destroy, :edit] do
     resources :steps, only: [:show, :update], controller: 'enquirys/steps'
   end
  
-  root to: 'enquirys#index'
+  root to: 'enquirys_stepsgem#index'
 
   #voor login:
   get '/login' => 'sessions#new'
@@ -21,5 +22,7 @@ Rails.application.routes.draw do
 
  # get '/admin/new' => 'admin#new'
   #post '/admin/new' => 'admin#create'
+
+
 
 end

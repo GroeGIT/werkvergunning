@@ -50,5 +50,9 @@ group :development do
 #gem voor mysql admin: rails_admin https://github.com/sferik/rails_admin
 
   gem 'rails_admin', '~> 1.0'
+
+  #gem voor het gebruik van simple_forms, formulier op 1 pagina
+  gem 'simple_form'
+  gem 'mail_form'
 end
 

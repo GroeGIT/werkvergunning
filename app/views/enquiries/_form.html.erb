@@ -1,0 +1,22 @@
+<%= simple_form_for(@enquiry) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :reference, placeholder: 'Referentie' %>
+    <br>
+    <%= f.input :location, as: :check_boxes, collection: ["Chemiepark", "Winschoten", "Farmsum"]  %>
+    <br>
+    <%= f.input :description, placeholder: 'Omschrijving' %>
+    <br>
+    <%= f.input :date %>
+    <br>
+    <%= f.input :amount, placeholder: 'Aantal' %>
+
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -46,4 +46,15 @@ class Enquiry < ActiveRecord::Base
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
 
+  #voor het mailen met behulp van de mailgem:
+  # Declare the e-mail headers. It accepts anything the mail method
+  # in ActionMailer accepts.
+  def headers
+    {
+        :subject => "My Contact Form",
+        :to => "marco.groenhof@jpbgroep.nl",
+        :from => %("#{name}" <#{email}>)
+    }
+  end
+
 end
