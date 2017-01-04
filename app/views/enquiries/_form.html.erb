@@ -1,22 +1,63 @@
 <%= simple_form_for(@enquiry) do |f| %>
-  <%= f.error_notification %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
+    <div class="form-inputs">
+      <H1>Algemene informatie</H1>
 
-    <%= f.input :reference, placeholder: 'Referentie' %>
-    <br>
-    <%= f.input :location, as: :check_boxes, collection: ["Chemiepark", "Winschoten", "Farmsum"]  %>
-    <br>
-    <%= f.input :description, placeholder: 'Omschrijving' %>
-    <br>
-    <%= f.input :date %>
-    <br>
-    <%= f.input :amount, placeholder: 'Aantal' %>
+      <%= f.input :reference, placeholder: 'Referentie' %>
+      <br>
+
+      <%= f.label :Locatie %>
+      <%= f.select :location, [['Chemiepark', 'chemiepark'], ['Farmsum', 'farmsum'], ['Winschoten', 'winschoten']] %>
+
+      <br>
+      <%= f.input :description, placeholder: 'Omschrijving' %>
+      <br>
+      <%= f.input :date %>
+      <br>
+      <%= f.input :amount, placeholder: 'Aantal' %>
+
+    </div>
+
+    <hr>
+    <% if false %>
+        <div class="form-inputs">
+          <%= f.simple_fields_for :enquiry_measures do |e| %>
+
+              <H1>Maatregelen</H1>
+
+              <%= e.input :responsible, placeholder: 'Verantwoordelijke' %>
+              <br>
+              <%# e.input :needed, as: :check_boxes,
+                     collection: ["ja", "nee"] %>
+          <% end %>
+          <br>
+        </div>
+    <% end %>
+
+    <div class="form-inputs">
+      <%= f.simple_fields_for :tools do |tf| %>
 
 
-  </div>
+          <h1>Gereedschappen simple</h1>
+            <br>
+             <%= tf.input :handtool, placeholder: 'Handgereedschap' %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <% end %>
+    </div>
+<% if false %>
+    <div>
+      <h2>Tools via youtube tutorial</h2>
+      <%= f.fields_for :tools do |t| %>
+
+      <%= t.label :handgereedschap %><br>
+          <%= t.text_field :handtool %>
+
+      <%end%>
+
+    </div>
+    <%end%>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>

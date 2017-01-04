@@ -5,6 +5,7 @@ class EnquiriesController < ApplicationController
   # GET /enquiries.json
   def index
     @enquiries = Enquiry.all
+    @enquiry_measures = EnquiryMeasure.all
   end
 
   # GET /enquiries/1
@@ -15,6 +16,9 @@ class EnquiriesController < ApplicationController
   # GET /enquiries/new
   def new
     @enquiry = Enquiry.new
+    @enquiry.enquiry_measures.build
+    @enquiry.tools.build
+
   end
 
   # GET /enquiries/1/edit
@@ -25,6 +29,8 @@ class EnquiriesController < ApplicationController
   # POST /enquiries.json
   def create
     @enquiry = Enquiry.new(enquiry_params)
+    @enquiry.enquiry_measures.build
+    @enquiry.tools.build
 
     respond_to do |format|
       if @enquiry.save
@@ -70,7 +76,10 @@ class EnquiriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def enquiry_params
       # was gegenereerd door de scaffold params.fetch(:enquiry, {})
-      params.require(:enquiry).permit(:reference, :location, :description, :date, :amount, measure_attributes: [:measurement, :type], enquiry_measure_attributes: [:done, :responsible, :needed], tool_attributes: [:handtool, :equipment, :else] )
+      params.require(:enquiry).permit(:reference, :location, :description, :date, :amount, tools_attributes: [:handtool] )
+                                      #{:tools_attributes => [:handtool]} )
+                                      #:enquiry_measures_attributes => [:done, :responsible, :needed])
+                                      #enquiry_measure_attributes: [:done, :responsible, :needed] )
 
     end
 end

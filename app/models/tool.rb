@@ -1,4 +1,5 @@
 class Tool < ActiveRecord::Base
-  belongs_to :enquiry, :class_name => 'Enquiry' #, inverse_of: :applicant
-  validates_presence_of :enquiry
+  belongs_to :enquiry,
+             inverse_of: :tools
+  #validates_presence_of :enquiry
 end

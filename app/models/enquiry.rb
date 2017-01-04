@@ -3,7 +3,7 @@ class Enquiry < ActiveRecord::Base
   #accepts_nested_attributes Nested attributes allow you to save attributes on associated records through the paren
   # de dere regel zorgt ervoor dat de maatregelen worden opgehaald via de tussentabel enquiry_measures.
 
-  has_many :enquiry_measures, :class_name => 'EnquiryMeasure' #, inverse_of: :Enquiry
+  has_many :enquiry_measures#, inverse_of: :Enquiry
   accepts_nested_attributes_for :enquiry_measures, :allow_destroy => true
 
   has_many :measures, -> { uniq }, :class_name => 'Measure', :through => :enquiry_measures, dependent: :destroy
@@ -18,7 +18,7 @@ class Enquiry < ActiveRecord::Base
   has_many :signatures, :class_name => 'Signature' #, inverse_of: :Enquiry
   accepts_nested_attributes_for :signatures, :allow_destroy => false
 
-  has_many :tools, :class_name => 'Tool', :dependent => :destroy  #, inverse_of: :Enquiry
+  has_many :tools, :dependent => :destroy , inverse_of: :enquiry
   accepts_nested_attributes_for :tools, :allow_destroy => true
 
   #:dependent => :destroy  zorgt ervoor dat de foreign record ook word verwijderd.
@@ -51,7 +51,7 @@ class Enquiry < ActiveRecord::Base
   # in ActionMailer accepts.
   def headers
     {
-        :subject => "My Contact Form",
+        :subject => "Aanvraag voor een werkvergunning",
         :to => "marco.groenhof@jpbgroep.nl",
         :from => %("#{name}" <#{email}>)
     }
